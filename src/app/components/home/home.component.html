@@ -1,0 +1,80 @@
+
+<header class="header-content header">
+    <div class="logo-content">
+        <img src="../../../assets/logo.png" alt="">
+        <div>
+            <span class="emp-text">EMPLOYEE</span><br>
+            <span class="emp-text emp-payroll">PAYROLL</span>
+        </div>
+    </div>
+</header>
+<div id="formId" class="form-content">
+    <form class="form" #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)">
+        <div class="form-head">Employee Payroll Form</div>
+        <div class="row-content">
+            <p class="name">Name</p>
+            <input class="inputt" style="height: 50px;" type="text" id="name" name="name" ngModel placeholder=" your name.. " required>
+        </div>
+
+        <div class="row-content">
+            <p class="pro">Profile Image</p>
+            <div class="profile-radio-content" style="top: 355px;" *ngFor="let profile of profile">
+                <input type="radio" class="profile1" name="profile" [value]="profile" ngModel required>
+                <img class="profile" [src]="profile">
+            </div>
+        </div>
+
+        <div class="row-content">
+            <p class="gen ">Gender</p>
+            <div style="margin-left: 92px;">
+                <input class="gend " type="radio" id="male" name="gender" value="male" ngModel>
+                <label class="text" for="male ">Male</label>
+                <input class="radio1" type="radio" id="female" name="gender" value="female" ngModel>
+                <label class="text" for="female ">Female</label>
+            </div>
+        </div>
+
+        <div class="row-content ">
+            <p class="depp">Department</p>
+            <div *ngFor="let dept of department ">
+                <!-- <input class="dept " type="checkbox " name="department " [value]="dept ">{{dept}} -->
+                <input class="check" type="checkbox" [name]="dept" [value]="dept" (change)="onCheck(dept)" required />
+                <label class="lbl">{{dept}}</label>
+            </div>
+        </div>
+
+        <div class="row-content">
+            <p class="sal">Salary</p>
+            <select class="select" name="salary" ngModel> 
+                <option value="1">Select Salary</option>
+                <option *ngFor="let salary of salary">{{salary}}</option>
+            </select>
+        </div>
+        <div class="row-content ">
+            <p class="start ">Start Date</p>
+            <div class="date " id="date ">
+                <select id="day " name="day" ngModel>
+                    <option value="1 ">Day</option>
+                      <option *ngFor="let day of date ">{{day}}</option>
+                </select>
+                <select id="month" name="month" ngModel>
+                    <option value="1 ">Month</option>
+                    <option *ngFor="let mon of month ">{{mon}}</option>
+                </select>
+                <select id="year " name="year" ngModel>
+                    <option value="1 ">Year</option>
+                    <option *ngFor="let yr of year ">{{yr}}</option>     
+                </select>
+            </div>
+        </div>
+        <div class="row-content">
+            <p class="note">Notes</p>
+            <textarea id="notes" class="input1" name="notes" ngModel></textarea>
+        </div>
+        <div class="button-content" style="flex-direction:row;">
+            <button type="button " class="button1">Cancel</button>
+            <button type="submit " class="button submitButton " id="submitButton" >Submit</button>
+            <button type="reset " class="resetButton button">Reset</button>
+        </div>
+    </form>
+</div>
