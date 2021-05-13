@@ -9,12 +9,14 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,11 @@ import {HttpClientModule} from '@angular/common/http'
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatCardModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

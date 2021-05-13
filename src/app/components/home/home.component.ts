@@ -70,6 +70,13 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.checkedDepartment);
   }
+  cancle(){
+    this.route.navigate(['/dashboard']);
+  }
+  reset(){
+    //this.route.navigate(['/home']);
+    location.reload();
+  }
 }
 
 
