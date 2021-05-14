@@ -1,42 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {UserService} from '../../service/user.service'
-import {Router} from '@angular/router'
-
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DashboardComponent, employeeData } from '../dashboard/dashboard.component';
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-update-employee',
+  templateUrl: './update-employee.component.html',
+  styleUrls: ['./update-employee.component.scss']
 })
-export class HomeComponent implements OnInit {
-  public requiredForm:any = FormGroup;
-
+export class UpdateEmployeeComponent implements OnInit {
+  public userPost:any = FormGroup;
   department = ['HR', 'SALES', 'FINANCE', 'ENGINEERING'];
+  date: any[] = []
   salary = [350000, 400000, 450000, 500000, 550000, 600000]
-  date: any = [];
   month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   year = [2019, 2020, 2021, 2022]
   employees: any = [];
   profile = ['../../../assets/Ellipse -3.png','../../../assets/Ellipse 1.png','../../../assets/Ellipse -8.png','../../../assets/Ellipse -4.png']
   checkedDepartment:any = [];
   values:any;
+  
+  constructor(private userService: UserService, private http: HttpClient, private formBuilder: FormBuilder, public dialogRef: MatDialogRef<DashboardComponent>,
+    @Inject(MAT_DIALOG_DATA) public curremp: employeeData) { 
+    this.userPost = this.formBuilder.group({
+     name: ['', [Validators.pattern("^[A-Z]{1}[a-z]{2,}"),Validators.required,Validators.minLength(3)]],
+     
+   })
+
    
-  constructor(private userService: UserService, private http: HttpClient, private formBuilder: FormBuilder, private route:Router) { 
-     this.requiredForm = this.formBuilder.group({
-      name: ['', [Validators.pattern("^[A-Z]{1}[a-z]{2,}"),Validators.required,Validators.minLength(3)]],
-      
-    })
-  }
+ }
 
   ngOnInit(): void {
-    this.day();
-  }
+    this.userPost = this.formBuilder.group({
+      department:[this.curremp.department],
+      startDate: [this.curremp.startDate],
+      salary: [this.curremp.salary],
+      profile: [this.curremp.profile],
+      name: [this.curremp.name, , Validators.required],
+      notes: [this.curremp.notes],
+      id: [this.curremp.id],
+      gender: [this.curremp.gender]
+   });
 
+    this.day()
+  }
   day() {
     let temp = []
     for (let i = 1; i < 31; i++) {
-      this.date = temp.push(i)
+      temp.push(i)
     }
     this.date = temp;
   }
@@ -51,11 +63,8 @@ export class HomeComponent implements OnInit {
     console.log(data);
     console.log();
     
-    this.userService.addData(data).subscribe(res => {
+    this.userService.updateData(this.curremp.id, this.curremp).subscribe(res => {
       console.log("res is", res);
-      alert("Details Added Successfully");
-      this.route.navigate(['/dashboard'])
-      
     })
   }
 
@@ -71,12 +80,4 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.checkedDepartment);
   }
-  cancle(){
-    this.route.navigate(['/dashboard']);
-  }
-  reset(){
-    location.reload();
-  }
 }
-
-

@@ -11,12 +11,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http'
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DashboardComponent,
+    UpdateEmployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,8 +30,7 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatCardModule
-
+    
 
   ],
   providers: [],

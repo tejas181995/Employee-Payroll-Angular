@@ -22,6 +22,7 @@ export class UserService {
   }
 
   deleteData(id:any){
+    alert("sure to delete details")
     return this.http.delete(`${this.BaseUrl}/deleteEmployee/${id}`)
   }
   updateData(id:any, data:any){

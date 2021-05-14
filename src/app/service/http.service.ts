@@ -45,6 +45,8 @@ export class HttpService {
         'Content-Type': 'application/json'
       })
     } 
+    console.log(url)
+    console.log(data)
     return this.http.put(url, data, options)
   }
 }
