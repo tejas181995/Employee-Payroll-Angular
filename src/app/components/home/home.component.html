@@ -37,7 +37,6 @@
         <div class="row-content ">
             <p class="depp">Department</p>
             <div *ngFor="let dept of department ">
-                <!-- <input class="dept " type="checkbox " name="department " [value]="dept ">{{dept}} -->
                 <input class="check" type="checkbox" [name]="dept" [value]="dept" (change)="onCheck(dept)" required />
                 <label class="lbl">{{dept}}</label>
             </div>
@@ -51,21 +50,14 @@
             </select>
         </div>
         <div class="row-content ">
-            <p class="start ">Start Date</p>
-            <div class="date " id="date ">
-                <select id="day " name="day" ngModel>
-                    <option value="1 ">Day</option>
-                      <option *ngFor="let day of date ">{{day}}</option>
-                </select>
-                <select id="month" name="month" ngModel>
-                    <option value="1 ">Month</option>
-                    <option *ngFor="let mon of month ">{{mon}}</option>
-                </select>
-                <select id="year " name="year" ngModel>
-                    <option value="1 ">Year</option>
-                    <option *ngFor="let yr of year ">{{yr}}</option>     
-                </select>
-            </div>
+
+                <p class="start" >Startdate</p>
+                <div class="date">
+                    <input matInput [matDatepicker]="picker" id="startDate" name="startDate" ngModel>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </div>
+              
         </div>
         <div class="row-content">
             <p class="note">Notes</p>

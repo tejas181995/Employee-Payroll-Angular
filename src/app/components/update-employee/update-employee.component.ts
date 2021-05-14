@@ -32,7 +32,7 @@ export class UpdateEmployeeComponent implements OnInit {
  }
 
   ngOnInit(): void {
-    this.userPost = this.formBuilder.group({
+    this.userPost.values = this.formBuilder.group({
       department:[this.curremp.department],
       startDate: [this.curremp.startDate],
       salary: [this.curremp.salary],

@@ -12,6 +12,13 @@ import {HttpClientModule} from '@angular/common/http'
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
+
+
 
 
 @NgModule({
@@ -20,6 +27,7 @@ import { UpdateEmployeeComponent } from './components/update-employee/update-emp
     HomeComponent,
     DashboardComponent,
     UpdateEmployeeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -30,6 +38,9 @@ import { UpdateEmployeeComponent } from './components/update-employee/update-emp
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     
 
   ],

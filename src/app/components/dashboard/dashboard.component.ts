@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
       console.log("deleted successfully")
     })
       console.log("deleted successfully");     
-    this.ngOnInit();
+    location.reload();
   }
   editEmp(id:any){
     var curremp = this.getEmpbyid(id)
@@ -63,6 +63,7 @@ export class DashboardComponent implements OnInit {
       gender: curremp.gender
       }
     });
+    location.reload()
    
   }
   getEmpbyid(id:any){

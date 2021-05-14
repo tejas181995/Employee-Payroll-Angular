@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {UserService} from '../../service/user.service'
 import {Router} from '@angular/router'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -42,15 +43,10 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit = (data: any) =>{
-    console.log(data.year);
-    data.department = this.checkedDepartment;
-    data.startDate = data.year + '/' + (this.month.indexOf(data.month)+1) + '/' + data.day; 
-    delete data.month;
-    delete data.year;
-    delete data.day;
-    console.log(data);
-    console.log();
-    
+    const momentDate = new Date(data.startDate); // Replace event.value with your date value
+    const formattedDate = moment(momentDate).format("YYYY/MM/DD");
+    data.startDate = formattedDate
+    data.department = this.checkedDepartment
     this.userService.addData(data).subscribe(res => {
       console.log("res is", res);
       alert("Details Added Successfully");
