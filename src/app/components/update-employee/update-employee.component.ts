@@ -37,14 +37,14 @@ export class UpdateEmployeeComponent implements OnInit {
       startDate: [this.curremp.startDate],
       salary: [this.curremp.salary],
       profile: [this.curremp.profile],
-      name: [this.curremp.name, , Validators.required],
+      name: [this.curremp.name, Validators.required],
       notes: [this.curremp.notes],
       id: [this.curremp.id],
       gender: [this.curremp.gender]
    });
-
     this.day()
   }
+
   day() {
     let temp = []
     for (let i = 1; i < 31; i++) {
@@ -53,19 +53,24 @@ export class UpdateEmployeeComponent implements OnInit {
     this.date = temp;
   }
 
+
   onSubmit = (data: any) =>{
-    console.log(data.year);
+    
+    console.log(data);
     data.department = this.checkedDepartment;
     data.startDate = data.year + '/' + (this.month.indexOf(data.month)+1) + '/' + data.day; 
     delete data.month;
     delete data.year;
     delete data.day;
+    delete data.startDate;
     console.log(data);
     console.log();
     
-    this.userService.updateData(this.curremp.id, this.curremp).subscribe(res => {
+    this.userService.updateData(this.curremp.id, data).subscribe(res => {
       console.log("res is", res);
-    })
+    });
+    this.dialogRef.close();
+   location.reload();
   }
 
   onCheck(evt:any) {

@@ -62,7 +62,8 @@ export class DashboardComponent implements OnInit {
       id: curremp.id,
       gender: curremp.gender
       }
-    })
+    });
+   
   }
   getEmpbyid(id:any){
     for(let emp of this.employee.data){
