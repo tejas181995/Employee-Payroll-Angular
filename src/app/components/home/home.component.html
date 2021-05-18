@@ -18,8 +18,8 @@
 
         <div class="row-content">
             <p class="pro">Profile Image</p>
-            <div class="profile-radio-content" style="top: 355px;" *ngFor="let profile of profile">
-                <input type="radio" class="profile1" name="profile" [value]="profile" ngModel required>
+            <div class="profile-radio-content" style="top: 355px;" *ngFor="let profile of profiles">
+                <input type="radio" class="profile1" name="profile" value="{{profile}}" ngModel required>
                 <img class="profile" [src]="profile">
             </div>
         </div>
@@ -44,7 +44,7 @@
 
         <div class="row-content">
             <p class="sal">Salary</p>
-            <select class="select" name="salary" ngModel> 
+            <select class="select" name="salary" ngModel > 
                 <option value="1">Select Salary</option>
                 <option *ngFor="let salary of salary">{{salary}}</option>
             </select>

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   year = [2019, 2020, 2021, 2022]
   employees: any = [];
-  profile = ['../../../assets/Ellipse -3.png','../../../assets/Ellipse 1.png','../../../assets/Ellipse -8.png','../../../assets/Ellipse -4.png']
+  profiles = ['../../../assets/Ellipse -3.png','../../../assets/Ellipse 1.png','../../../assets/Ellipse -8.png','../../../assets/Ellipse -4.png']
   checkedDepartment:any = [];
   values:any;
    
@@ -31,19 +31,19 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.day();
+    //this.day();
   }
 
-  day() {
-    let temp = []
-    for (let i = 1; i < 31; i++) {
-      this.date = temp.push(i)
-    }
-    this.date = temp;
-  }
+  // day() {
+  //   let temp = []
+  //   for (let i = 1; i < 31; i++) {
+  //     this.date = temp.push(i)
+  //   }
+  //   this.date = temp;
+  // }
 
   onSubmit = (data: any) =>{
-    const momentDate = new Date(data.startDate); // Replace event.value with your date value
+    const momentDate = new Date(data.startDate); 
     const formattedDate = moment(momentDate).format("YYYY/MM/DD");
     data.startDate = formattedDate
     data.department = this.checkedDepartment

@@ -48,6 +48,7 @@ export class DashboardComponent implements OnInit {
     })
       console.log("deleted successfully");     
     location.reload();
+    location.reload();
   }
   editEmp(id:any){
     var curremp = this.getEmpbyid(id)
@@ -63,7 +64,7 @@ export class DashboardComponent implements OnInit {
       gender: curremp.gender
       }
     });
-    location.reload()
+    //location.reload()
    
   }
   getEmpbyid(id:any){
