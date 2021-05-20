@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
 import { UserService} from '../../service/user.service'
-import { getAngularJSVersion } from '@cds/core/internal';
+//import { getAngularJSVersion } from '@cds/core/internal';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UpdateEmployeeComponent } from '../update-employee/update-employee.component';
-
+import { NotifierService } from '../../service/notifier.service'
 
 export interface employeeData{
   department: any[],
@@ -26,7 +26,8 @@ export interface employeeData{
 
 export class DashboardComponent implements OnInit {
   employee:any = [];
-  constructor(private http: HttpClient, private userService: UserService, public dialog: MatDialog) { }
+  constructor(private http: HttpClient, private userService: UserService, public dialog: MatDialog,
+    private notifierService : NotifierService) { }
 
   ngOnInit(): void {
     this.getData()
@@ -44,9 +45,8 @@ export class DashboardComponent implements OnInit {
     console.log(id);
     this.userService.deleteData(id).subscribe(res => {
       this.getData();
-      console.log("deleted successfully")
-    })
-      console.log("deleted successfully");     
+      this.notifierService.showDelete();
+    })  
     location.reload();
     location.reload();
   }
@@ -64,9 +64,9 @@ export class DashboardComponent implements OnInit {
       gender: curremp.gender
       }
     });
-    //location.reload()
-   
+    this.notifierService.showUpdate();
   }
+    
   getEmpbyid(id:any){
     for(let emp of this.employee.data){
       if(emp.id == id){

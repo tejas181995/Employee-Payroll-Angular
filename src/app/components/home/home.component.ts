@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {UserService} from '../../service/user.service'
 import {Router} from '@angular/router'
 import * as moment from 'moment';
+import { NotifierService } from '../../service/notifier.service'
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
   checkedDepartment:any = [];
   values:any;
    
-  constructor(private userService: UserService, private http: HttpClient, private formBuilder: FormBuilder, private route:Router) { 
+  constructor(private userService: UserService, private http: HttpClient, private formBuilder: FormBuilder, private route:Router, private notifierService : NotifierService) { 
      this.requiredForm = this.formBuilder.group({
       name: ['', [Validators.pattern("^[A-Z]{1}[a-z]{2,}"),Validators.required,Validators.minLength(3)]],
       
@@ -49,7 +50,8 @@ export class HomeComponent implements OnInit {
     data.department = this.checkedDepartment
     this.userService.addData(data).subscribe(res => {
       console.log("res is", res);
-      alert("Details Added Successfully");
+      //alert("Details Added Successfully");
+      this.notifierService.showSuccessfull();
       this.route.navigate(['/dashboard'])
       
     })
